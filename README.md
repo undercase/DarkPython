@@ -15,6 +15,9 @@ DarkPython features:
 * A feature rich debugger!
 
 
+![Editor Screenshot](/screenshots/editor.png)
+
+
 The main appeal of using DarkPython is it's debugger. The debugger runs in it's own thread. It features:
 
 
@@ -25,6 +28,9 @@ The main appeal of using DarkPython is it's debugger. The debugger runs in it's 
 * Values of all variables are updated at each line and kept in an easy to read, tabular format.
 
 * A great GUI built off of wxPython.
+
+
+![Debugger Screenshot](/screenshots/debugger.png)
 
 
 DarkPython clarifies Python programming like never before!
