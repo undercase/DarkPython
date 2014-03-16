@@ -30,4 +30,18 @@ The main appeal of using DarkPython is it's debugger. The debugger runs in it's 
 DarkPython clarifies Python programming like never before!
 
 
-Wrote by Thomas Hobohm (superman3275) using Python 2.7 and wxPython.
+DarkPython is programmed in python 2.7.6 using wxPython as the GUI backend. It is multithreaded. To run, get wxPython:
+
+    pip install wxpython
+
+Clone the repo and cd into the directory:
+
+    git clone https://www.github.com/superman3275/DarkPython DarkPython
+    cd DarkPython
+
+And finally, run DarkPython.py:
+
+    python DarkPython.py
+
+
+Wrote / maintained by Thomas Hobohm (superman3275).
