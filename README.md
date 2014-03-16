@@ -27,7 +27,7 @@ The main appeal of using DarkPython is it's debugger. The debugger runs in it's 
 
 * Values of all variables are updated at each line and kept in an easy to read, tabular format.
 
-* A great GUI built off of wxPython.
+* A great GUI built off of a wxPython backend.
 
 
 ![Debugger Screenshot](/screenshots/debugger.png)
