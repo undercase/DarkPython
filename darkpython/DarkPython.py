@@ -19,7 +19,7 @@ sys.stderr = open("stderr.log", "w")
 class DarkPython(wx.Frame):
     def __init__(self, *args, **kwargs):
         wx.Frame.__init__(self, *args, **kwargs)
-        self.SetIcon(wx.Icon("DarkPython.png", wx.BITMAP_TYPE_PNG))
+        self.SetIcon(wx.Icon("./assets/DarkPython.png", wx.BITMAP_TYPE_PNG))
         self.InitUI()
         self.Show()
 
@@ -56,11 +56,11 @@ class DarkPython(wx.Frame):
         self.SetMenuBar(menubar)
 
         toolbar = self.CreateToolBar()
-        interprettool = toolbar.AddLabelTool(wx.ID_ANY, "Interpret", wx.Bitmap("interpret.png"))
-        debugtool = toolbar.AddLabelTool(wx.ID_ANY, "Debug", wx.Bitmap("debug.png"))
-        savetool = toolbar.AddLabelTool(wx.ID_ANY, "Save", wx.Bitmap("save.png"))
-        newtool = toolbar.AddLabelTool(wx.ID_ANY, "New File", wx.Bitmap("newfile.png"))
-        opentool = toolbar.AddLabelTool(wx.ID_ANY, "Open File", wx.Bitmap("open.png"))
+        interprettool = toolbar.AddLabelTool(wx.ID_ANY, "Interpret", wx.Bitmap("./assets/interpret.png"))
+        debugtool = toolbar.AddLabelTool(wx.ID_ANY, "Debug", wx.Bitmap("./assets/debug.png"))
+        savetool = toolbar.AddLabelTool(wx.ID_ANY, "Save", wx.Bitmap("./assets/save.png"))
+        newtool = toolbar.AddLabelTool(wx.ID_ANY, "New File", wx.Bitmap("./assets/newfile.png"))
+        opentool = toolbar.AddLabelTool(wx.ID_ANY, "Open File", wx.Bitmap("./assets/open.png"))
         toolbar.Realize()
         self.Bind(wx.EVT_TOOL, self.OnInterpret, interprettool)
         self.Bind(wx.EVT_TOOL, self.OnDebug, debugtool)
@@ -116,7 +116,7 @@ WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
 Public License for more details."""
         info = wx.AboutDialogInfo()
-        info.SetIcon(wx.Icon("DarkPython.png", wx.BITMAP_TYPE_PNG))
+        info.SetIcon(wx.Icon("./assets/DarkPython.png", wx.BITMAP_TYPE_PNG))
         info.SetName("DarkPython")
         info.SetVersion("Alpha")
         info.SetDescription(description)
@@ -140,7 +140,7 @@ Public License for more details."""
         dialog = wx.TextEntryDialog(self, "Where is your python path?", caption="Python Path")
         if dialog.ShowModal() == wx.ID_OK:
             pythonpath = dialog.GetValue()
-            file = open("settings.ini", "w")
+            file = open("./config/settings.ini", "w")
             config = ConfigParser.ConfigParser()
             config.add_section("python")
             config.set("python", "path", pythonpath)
