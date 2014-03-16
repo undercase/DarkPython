@@ -140,7 +140,7 @@ Public License for more details."""
         dialog = wx.TextEntryDialog(self, "Where is your python path?", caption="Python Path")
         if dialog.ShowModal() == wx.ID_OK:
             pythonpath = dialog.GetValue()
-            file = open("settings.ini", "w")
+            file = open("./config/settings.ini", "w")
             config = ConfigParser.ConfigParser()
             config.add_section("python")
             config.set("python", "path", pythonpath)
