@@ -80,15 +80,13 @@ class Debugger(bdb.Bdb, threading.Thread):
 	def terminate(self):
 		sys.exit()
 	def run(self):
-		if globals is None:
-			import __main__
-			globals = __main__.__dict__
-		if locals is None:
-			locals = globals
+		import __main__
+		globals = __main__.__dict__
+		locals = globals
 		self.reset()
 		sys.settrace(self.trace_dispatch)
-		if not isinstance(self.code, types.CodeType):
-			self.code = self.code+'\n'
+		#if not isinstance(self.code, types.CodeType):
+		#	self.code = self.code+'\n'
 		try:
 			exec self.code in globals, locals
 		except BdbQuit:
