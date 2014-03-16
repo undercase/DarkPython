@@ -81,21 +81,21 @@ class Debugger(bdb.Bdb, threading.Thread):
 		sys.exit()
 	def run(self):
 		if globals is None:
-            import __main__
-            globals = __main__.__dict__
-        if locals is None:
-            locals = globals
-        self.reset()
-        sys.settrace(self.trace_dispatch)
-        if not isinstance(self.code, types.CodeType):
-            self.code = self.code+'\n'
-        try:
-            exec self.code in globals, locals
-        except BdbQuit:
-            pass
-        finally:
-            self.quitting = 1
-            sys.settrace(None)
+			import __main__
+			globals = __main__.__dict__
+		if locals is None:
+			locals = globals
+		self.reset()
+		sys.settrace(self.trace_dispatch)
+		if not isinstance(self.code, types.CodeType):
+			self.code = self.code+'\n'
+		try:
+			exec self.code in globals, locals
+		except BdbQuit:
+			pass
+		finally:
+			self.quitting = 1
+			sys.settrace(None)
 
 
 
