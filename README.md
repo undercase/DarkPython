@@ -37,7 +37,7 @@ DarkPython is programmed in python 2.7.6 using wxPython as the GUI backend. It i
 Clone the repo and cd into the directory:
 
     git clone https://www.github.com/superman3275/DarkPython DarkPython
-    cd DarkPython
+    cd DarkPython/darkpython
 
 And finally, run DarkPython.py:
 
