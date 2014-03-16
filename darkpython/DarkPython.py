@@ -13,9 +13,6 @@ from STCEdit import *
 from filenotebook import *
 import wx.lib.agw.flatnotebook as fnb
 
-sys.stdout = open("stdout.log", "w")
-sys.stderr = open("stderr.log", "w")
-
 class DarkPython(wx.Frame):
     def __init__(self, *args, **kwargs):
         wx.Frame.__init__(self, *args, **kwargs)
@@ -153,6 +150,6 @@ class DebugDialog(wx.Frame):
         wx.Frame.__init__(self, *args, **kwargs)
         self.InitUI()
 
-app = wx.App(redirect=True, filename="logfile.txt")
+app = wx.App(redirect=True, filename="log.txt")
 window = DarkPython(parent=None, title="DarkPython", size=(800, 640))
 app.MainLoop()
