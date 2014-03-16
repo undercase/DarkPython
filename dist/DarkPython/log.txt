@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "DarkPython.py", line 154, in <module>
+  File "DarkPython.py", line 20, in __init__
+  File "DarkPython.py", line 61, in InitUI
+  File "wx\_controls.pyc", line 3875, in Realize
+wx._core.PyAssertionError: C++ assertion "wxAssertFailure" failed at ..\..\src\msw\tbar95.cpp(726) in wxToolBar::Realize(): invalid tool button bitmap
+Traceback (most recent call last):
+  File "DarkPython.py", line 154, in <module>
+  File "DarkPython.py", line 20, in __init__
+  File "DarkPython.py", line 61, in InitUI
+  File "wx\_controls.pyc", line 3875, in Realize
+wx._core.PyAssertionError: C++ assertion "wxAssertFailure" failed at ..\..\src\msw\tbar95.cpp(726) in wxToolBar::Realize(): invalid tool button bitmap
+Traceback (most recent call last):
+  File "DarkPython.py", line 154, in <module>
+  File "DarkPython.py", line 20, in __init__
+  File "DarkPython.py", line 61, in InitUI
+  File "wx\_controls.pyc", line 3875, in Realize
+wx._core.PyAssertionError: C++ assertion "wxAssertFailure" failed at ..\..\src\msw\tbar95.cpp(726) in wxToolBar::Realize(): invalid tool button bitmap
+Traceback (most recent call last):
+  File "DarkPython.py", line 154, in <module>
+  File "DarkPython.py", line 20, in __init__
+  File "DarkPython.py", line 61, in InitUI
+  File "wx\_controls.pyc", line 3875, in Realize
+wx._core.PyAssertionError: C++ assertion "wxAssertFailure" failed at ..\..\src\msw\tbar95.cpp(726) in wxToolBar::Realize(): invalid tool button bitmap
+Traceback (most recent call last):
+  File "DarkPython.py", line 154, in <module>
+  File "DarkPython.py", line 20, in __init__
+  File "DarkPython.py", line 61, in InitUI
+  File "wx\_controls.pyc", line 3875, in Realize
+wx._core.PyAssertionError: C++ assertion "wxAssertFailure" failed at ..\..\src\msw\tbar95.cpp(726) in wxToolBar::Realize(): invalid tool button bitmap
