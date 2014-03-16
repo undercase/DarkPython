@@ -16,7 +16,7 @@ import wx.lib.agw.flatnotebook as fnb
 class DarkPython(wx.Frame):
     def __init__(self, *args, **kwargs):
         wx.Frame.__init__(self, *args, **kwargs)
-        self.SetIcon(wx.Icon("./assets/DarkPython.png", wx.BITMAP_TYPE_PNG))
+        self.SetIcon(wx.Icon("../assets/DarkPython.png", wx.BITMAP_TYPE_PNG))
         self.InitUI()
         self.Show()
 
@@ -53,11 +53,11 @@ class DarkPython(wx.Frame):
         self.SetMenuBar(menubar)
 
         toolbar = self.CreateToolBar()
-        interprettool = toolbar.AddLabelTool(wx.ID_ANY, "Interpret", wx.Bitmap("./assets/interpret.png"))
-        debugtool = toolbar.AddLabelTool(wx.ID_ANY, "Debug", wx.Bitmap("./assets/debug.png"))
-        savetool = toolbar.AddLabelTool(wx.ID_ANY, "Save", wx.Bitmap("./assets/save.png"))
-        newtool = toolbar.AddLabelTool(wx.ID_ANY, "New File", wx.Bitmap("./assets/newfile.png"))
-        opentool = toolbar.AddLabelTool(wx.ID_ANY, "Open File", wx.Bitmap("./assets/open.png"))
+        interprettool = toolbar.AddLabelTool(wx.ID_ANY, "Interpret", wx.Bitmap("../assets/interpret.png"))
+        debugtool = toolbar.AddLabelTool(wx.ID_ANY, "Debug", wx.Bitmap("../assets/debug.png"))
+        savetool = toolbar.AddLabelTool(wx.ID_ANY, "Save", wx.Bitmap("../assets/save.png"))
+        newtool = toolbar.AddLabelTool(wx.ID_ANY, "New File", wx.Bitmap("../assets/newfile.png"))
+        opentool = toolbar.AddLabelTool(wx.ID_ANY, "Open File", wx.Bitmap("../assets/open.png"))
         toolbar.Realize()
         self.Bind(wx.EVT_TOOL, self.OnInterpret, interprettool)
         self.Bind(wx.EVT_TOOL, self.OnDebug, debugtool)
@@ -113,7 +113,7 @@ WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
 Public License for more details."""
         info = wx.AboutDialogInfo()
-        info.SetIcon(wx.Icon("./assets/DarkPython.png", wx.BITMAP_TYPE_PNG))
+        info.SetIcon(wx.Icon("../assets/DarkPython.png", wx.BITMAP_TYPE_PNG))
         info.SetName("DarkPython")
         info.SetVersion("Alpha")
         info.SetDescription(description)
