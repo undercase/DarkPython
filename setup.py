@@ -10,6 +10,6 @@ setup(
 	""",
 	author="",
 	packages=find_packages(exclude='tests'),
-	#Not sure about this line: package_data={'darkpython': ['assets/*.png']},
+	package_data={'darkpython': ['assets/*.png']},
 	install_requires=['wxPython>=3.0'],
 )
