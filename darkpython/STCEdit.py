@@ -40,8 +40,8 @@ class MySTC(stc.StyledTextCtrl):
         self.SetProperty("fold", "1")
         self.SetMargins(0, 0)
         self.SetViewWhiteSpace(False)
-        self.SetEdgeMode(stc.STC_EDGE_BACKGROUND)
-        self.SetEdgeColumn(78)
+        #self.SetEdgeMode(stc.STC_EDGE_BACKGROUND)
+        #self.SetEdgeColumn(78)
         self.SetCaretForeground("white")
  
         # setup a margin to hold the fold markers
