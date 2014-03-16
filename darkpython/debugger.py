@@ -130,7 +130,7 @@ class DebuggerWindow(wx.Frame):
 		global terminate
 		terminate = False
 		wx.Frame.__init__(self, *args, **kwargs)
-		self.SetIcon(wx.Icon("DarkPython.png", wx.BITMAP_TYPE_PNG))
+		self.SetIcon(wx.Icon("./assets/DarkPython.png", wx.BITMAP_TYPE_PNG))
 		self.InitUI()
 		self.debugger = Debugger(self.output, self.variables, code, name="Debugger thread!")
 		self.code.AppendText(code)
