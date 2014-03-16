@@ -5,7 +5,7 @@ import keyword
 if wx.Platform == '__WXMSW__':
     # for windows OS
     faces = {
-        'times': 'Times New Roman',
+        'times': 'Courier New',
         'mono' : 'Courier New',
         # try temporary switch to mono
         'helv' : 'Courier New',
@@ -42,7 +42,7 @@ class MySTC(stc.StyledTextCtrl):
         self.SetViewWhiteSpace(False)
         self.SetEdgeMode(stc.STC_EDGE_BACKGROUND)
         self.SetEdgeColumn(78)
-        self.SetCaretForeground("blue")
+        self.SetCaretForeground("white")
  
         # setup a margin to hold the fold markers
         self.SetMarginType(2, stc.STC_MARGIN_SYMBOL)
@@ -78,8 +78,10 @@ class MySTC(stc.StyledTextCtrl):
             "face:%(helv)s,size:%(size)d" % faces)
         # set default background color
         white = "#FFFFFF"
+        background = "#272822"
         self.StyleSetBackground(style=stc.STC_STYLE_DEFAULT,
-            back=white)
+            back=background)
+        self.StyleSetForeground(stc.STC_STYLE_DEFAULT,wx.Colour(255, 255, 255))
         # reset all to be like the default
         self.StyleClearAll()
  
@@ -88,54 +90,54 @@ class MySTC(stc.StyledTextCtrl):
             "back:#C0C0C0,face:%(helv)s,size:%(size2)d" % faces)
         self.StyleSetSpec(stc.STC_STYLE_CONTROLCHAR,
             "face:%(other)s" % faces)
-        self.StyleSetSpec(stc.STC_STYLE_BRACELIGHT,
+        """self.StyleSetSpec(stc.STC_STYLE_BRACELIGHT,
             "fore:#FFFFFF,back:#0000FF,bold")
         self.StyleSetSpec(stc.STC_STYLE_BRACEBAD,
-            "fore:#000000,back:#FF0000,bold")
+            "fore:#000000,back:#FF0000,bold")"""
  
         # make the Python styles ...
         # default
         self.StyleSetSpec(stc.STC_P_DEFAULT,
-            "fore:#000000,face:%(helv)s,size:%(size)d" % faces)
+            "fore:#F8F8F2,face:%(helv)s,size:%(size)d" % faces)
         # comments
         self.StyleSetSpec(stc.STC_P_COMMENTLINE,
-            "fore:#007F00,face:%(other)s,size:%(size)d" % faces)
+            "fore:#75715E,face:%(other)s,size:%(size)d" % faces)
         # number
         self.StyleSetSpec(stc.STC_P_NUMBER,
-            "fore:#007F7F,size:%(size)d" % faces)
+            "fore:#AE81FF,size:%(size)d" % faces)
         # string
         self.StyleSetSpec(stc.STC_P_STRING,
-            "fore:#7F007F,face:%(helv)s,size:%(size)d" % faces)
+            "fore:#E6DB74,face:%(helv)s,size:%(size)d" % faces)
         # single quoted string
         self.StyleSetSpec(stc.STC_P_CHARACTER,
-            "fore:#7F007F,face:%(helv)s,size:%(size)d" % faces)
+            "fore:#E6DB74,face:%(helv)s,size:%(size)d" % faces)
         # keyword
         self.StyleSetSpec(stc.STC_P_WORD,
-            "fore:#00007F,bold,size:%(size)d" % faces)
+            "fore:#F92672,bold,size:%(size)d" % faces)
         # triple quotes
         self.StyleSetSpec(stc.STC_P_TRIPLE,
-            "fore:#7F0000,size:%(size)d" % faces)
+            "fore:#E6DB74,size:%(size)d" % faces)
         # triple double quotes
         self.StyleSetSpec(stc.STC_P_TRIPLEDOUBLE,
-            "fore:#7F0000,size:%(size)d" % faces)
+            "fore:#E6DB74,size:%(size)d" % faces)
         # class name definition
-        self.StyleSetSpec(stc.STC_P_CLASSNAME,
-            "fore:#0000FF,bold,underline,size:%(size)d" % faces)
+        #self.StyleSetSpec(stc.STC_P_CLASSNAME,
+            #"fore:#A6E22E,bold,underline,size:%(size)d" % faces)
         # function or method name definition
         self.StyleSetSpec(stc.STC_P_DEFNAME,
-            "fore:#007F7F,bold,size:%(size)d" % faces)
+            "fore:#A6E22E,bold,size:%(size)d" % faces)
         # operators
         self.StyleSetSpec(stc.STC_P_OPERATOR,
             "bold,size:%(size)d" % faces)
         # identifiers
         self.StyleSetSpec(stc.STC_P_IDENTIFIER,
-            "fore:#000000,face:%(helv)s,size:%(size)d" % faces)
+            "fore:#F8F8F2,face:%(helv)s,size:%(size)d" % faces)
         # comment-blocks
         self.StyleSetSpec(stc.STC_P_COMMENTBLOCK,
-            "fore:#7F7F7F,size:%(size)d" % faces)
+            "fore:#E6DB74,size:%(size)d" % faces)
         # end of line where string is not closed
         self.StyleSetSpec(stc.STC_P_STRINGEOL,
-            "fore:#000000,face:%(mono)s,back:#E0C0E0,eol,size:%(size)d"\
+            "fore:#F8F8F2,face:%(mono)s,back:#E0C0E0,eol,size:%(size)d"\
                 % faces)
  
         # register some images for use in the AutoComplete box

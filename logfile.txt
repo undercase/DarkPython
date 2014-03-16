@@ -1,0 +1,112 @@
+yeah
+Traceback (most recent call last):
+  File "C:\Users\Thomas\Desktop\DarkPython\DarkPython.py", line 137, in OnDebug
+    self.notebook.debug()
+  File "C:\Users\Thomas\Desktop\DarkPython\filenotebook.py", line 55, in debug
+    print "yeah"
+  File "C:\Users\Thomas\Desktop\DarkPython\debugger.py", line 15, in write
+    self.output.AppendText(str(text) + "\n")
+  File "C:\Python27x86\lib\site-packages\wx-2.8-msw-unicode\wx\_core.py", line 14619, in __getattr__
+    raise PyDeadObjectError(self.attrStr % self._name)
+wx._core.PyDeadObjectError: The C++ part of the TextCtrl object has been deleted, attribute access no longer allowed.
+Traceback (most recent call last):
+  File "C:\Users\Thomas\Desktop\DarkPython\DarkPython.py", line 137, in OnDebug
+    self.notebook.debug()
+  File "C:\Users\Thomas\Desktop\DarkPython\filenotebook.py", line 55, in debug
+    print "yeah"
+  File "C:\Users\Thomas\Desktop\DarkPython\debugger.py", line 15, in write
+    self.output.AppendText(str(text) + "\n")
+  File "C:\Python27x86\lib\site-packages\wx-2.8-msw-unicode\wx\_core.py", line 14619, in __getattr__
+    raise PyDeadObjectError(self.attrStr % self._name)
+wx._core.PyDeadObjectError: The C++ part of the TextCtrl object has been deleted, attribute access no longer allowed.
+Traceback (most recent call last):
+  File "C:\Users\Thomas\Desktop\DarkPython\DarkPython.py", line 137, in OnDebug
+    self.notebook.debug()
+  File "C:\Users\Thomas\Desktop\DarkPython\filenotebook.py", line 55, in debug
+    print "yeah"
+  File "C:\Users\Thomas\Desktop\DarkPython\debugger.py", line 15, in write
+    self.output.AppendText(str(text) + "\n")
+  File "C:\Python27x86\lib\site-packages\wx-2.8-msw-unicode\wx\_core.py", line 14619, in __getattr__
+    raise PyDeadObjectError(self.attrStr % self._name)
+wx._core.PyDeadObjectError: The C++ part of the TextCtrl object has been deleted, attribute access no longer allowed.
+yeah
+yeah
+yeah
+Traceback (most recent call last):
+  File "C:\Users\Thomas\Desktop\DarkPython\DarkPython.py", line 137, in OnDebug
+    self.notebook.debug()
+  File "C:\Users\Thomas\Desktop\DarkPython\filenotebook.py", line 55, in debug
+    print "yeah"
+  File "C:\Users\Thomas\Desktop\DarkPython\debugger.py", line 17, in write
+    self.output.AppendText(str(text) + "\n")
+  File "C:\Python27x86\lib\site-packages\wx-2.8-msw-unicode\wx\_core.py", line 14619, in __getattr__
+    raise PyDeadObjectError(self.attrStr % self._name)
+wx._core.PyDeadObjectError: The C++ part of the TextCtrl object has been deleted, attribute access no longer allowed.
+print "Hi!"
+print "Olah!"
+print "Senor"
+Exception in thread Debugger Thread:
+Traceback (most recent call last):
+  File "C:\Python27x86\lib\threading.py", line 808, in __bootstrap_inner
+    self.run()
+  File "C:\Users\Thomas\Desktop\DarkPython\debugger.py", line 71, in run
+    self.runcode(self.code)
+  File "C:\Python27x86\lib\bdb.py", line 400, in runcode
+    exec cmd in globals, locals
+  File "<string>", line 4, in <module>
+  File "<string>", line 3, in test
+  File "<string>", line 3, in test
+  File "C:\Python27x86\lib\bdb.py", line 49, in trace_dispatch
+    return self.dispatch_line(frame)
+  File "C:\Python27x86\lib\bdb.py", line 67, in dispatch_line
+    self.user_line(frame)
+  File "C:\Users\Thomas\Desktop\DarkPython\debugger.py", line 57, in user_line
+    self.update_variables(frame)
+  File "C:\Users\Thomas\Desktop\DarkPython\debugger.py", line 63, in update_variables
+    self.variables.DeleteRows(numRows=self.variables.GetNumberRows())
+  File "C:\Python27x86\lib\site-packages\wx-2.8-msw-unicode\wx\grid.py", line 1237, in DeleteRows
+    return _grid.Grid_DeleteRows(*args, **kwargs)
+PyAssertionError: C++ assertion "wxAssertFailure" failed at ..\..\src\generic\grid.cpp(3619) in wxGridStringTable::DeleteRows(): Called wxGridStringTable::DeleteRows(pos=0, N=0)
+Pos value is invalid for present table with 0 rows
+
+Traceback (most recent call last):
+  File "C:\Users\Thomas\Desktop\DarkPython\debugger.py", line 162, in OnStep
+    if line == int(self.debugger.next_line):
+TypeError: int() argument must be a string or a number, not 'NoneType'
+Traceback (most recent call last):
+  File "C:\Users\Thomas\Desktop\DarkPython\debugger.py", line 162, in OnStep
+    if line == int(self.debugger.next_line):
+TypeError: int() argument must be a string or a number, not 'NoneType'
+Traceback (most recent call last):
+  File "C:\Users\Thomas\Desktop\DarkPython\debugger.py", line 162, in OnStep
+    if line == int(self.debugger.next_line):
+TypeError: int() argument must be a string or a number, not 'NoneType'
+Traceback (most recent call last):
+  File "C:\Users\Thomas\Desktop\DarkPython\debugger.py", line 163, in OnStep
+    if line == int(self.debugger.next_line):
+TypeError: int() argument must be a string or a number, not 'NoneType'
+print "Hi!"
+print "Olah!"
+print "Senor"
+Traceback (most recent call last):
+  File "C:\Users\Thomas\Desktop\DarkPython\DarkPython.py", line 95, in OnSave
+    self.notebook.save()
+  File "C:\Users\Thomas\Desktop\DarkPython\filenotebook.py", line 43, in save
+    self.files[self.GetSelection()].save()
+  File "C:\Users\Thomas\Desktop\DarkPython\filenotebook.py", line 17, in save
+    print self.GetText()
+  File "C:\Users\Thomas\Desktop\DarkPython\debugger.py", line 18, in write
+    self.output.AppendText(str(text) + "\n")
+  File "C:\Python27x86\lib\site-packages\wx-2.8-msw-unicode\wx\_core.py", line 14619, in __getattr__
+    raise PyDeadObjectError(self.attrStr % self._name)
+wx._core.PyDeadObjectError: The C++ part of the TextCtrl object has been deleted, attribute access no longer allowed.
+class Test(object):
+	def __init__(self, x):
+		for y in range(x):
+			print y
+ours = Test(10)
+class Test(object):
+	def __init__(self, x):
+		for y in range(x):
+			print y
+ours = Test(10)

@@ -10,6 +10,8 @@ import os
 import sys
 import ConfigParser
 from STCEdit import *
+from filenotebook import *
+import wx.lib.agw.flatnotebook as fnb
 
 sys.stdout = open("stdout.log", "w")
 sys.stderr = open("stderr.log", "w")
@@ -31,11 +33,13 @@ class DarkPython(wx.Frame):
         menunew = filemenu.Append(wx.ID_NEW, "&New", "Create a new file")
         menuopen = filemenu.Append(wx.ID_OPEN, "&Open", "Open a file for editing")
         menusave = filemenu.Append(wx.ID_SAVE, "&Save", "Save the current file")
+        menusaveas = filemenu.Append(wx.ID_ANY, "SaveAs", "Save the current file with a specific filename")
         menuabout = filemenu.Append(wx.ID_ABOUT, "&About", "Information about DarkPython")
         menuexit = filemenu.Append(wx.ID_EXIT, "E&xit", "Close DarkPython")
         self.Bind(wx.EVT_MENU, self.OnNew, menunew)
         self.Bind(wx.EVT_MENU, self.OnOpen, menuopen)
         self.Bind(wx.EVT_MENU, self.OnSave, menusave)
+        self.Bind(wx.EVT_MENU, self.OnSaveAs, menusaveas)
         self.Bind(wx.EVT_MENU, self.OnAbout, menuabout)
         self.Bind(wx.EVT_MENU, self.OnExit, menuexit)
         menubar.Append(filemenu, "&File")
@@ -64,13 +68,8 @@ class DarkPython(wx.Frame):
         self.Bind(wx.EVT_TOOL, self.OnNew, newtool)
         self.Bind(wx.EVT_TOOL, self.OnOpen, opentool)
 
-        self.notebook = wx.Notebook(panel)
-
-        self.textcontrols = []
-        self.textcontrols.append([MySTC(self.notebook), "untitled", ""])
-        self.textcontrols[0][0].SetMarginType(1, stc.STC_MARGIN_NUMBER)
-        self.textcontrols[0][0].SetMarginWidth(1, 25)
-        self.notebook.AddPage(self.textcontrols[0][0], self.textcontrols[0][1])
+        self.notebook = FileNotebook(panel, agwStyle=fnb.FNB_NO_X_BUTTON | fnb.FNB_NO_NAV_BUTTONS | fnb.FNB_X_ON_TAB)
+        self.notebook.add_file("untitled", "")
         vertsizer.Add(self.notebook, proportion=1, flag=wx.EXPAND)
 
         """self.textcontrol = MySTC(self.notebook)
@@ -84,34 +83,22 @@ class DarkPython(wx.Frame):
         vertsizer.Fit(panel)
 
     def OnNew(self, event):
-        self.textcontrols.append([MySTC(self.notebook), "untitled", ""])
-        self.textcontrols[-1][0].SetMarginType(1, stc.STC_MARGIN_NUMBER)
-        self.textcontrols[-1][0].SetMarginWidth(1, 25)
-        self.notebook.AddPage(self.textcontrols[-1][0], self.textcontrols[-1][1])
+        self.notebook.add_file("untitled", "")
 
     def OnOpen(self, event):
         dialog = wx.FileDialog(self, "Choose the file you want to edit", "", "", "*.*", wx.OPEN)
         if dialog.ShowModal() == wx.ID_OK:
-            self.textcontrols.append([MySTC(self.notebook), dialog.GetFilename(), dialog.GetDirectory()])
-            self.textcontrols[-1][0].SetMarginType(1, stc.STC_MARGIN_NUMBER)
-            self.textcontrols[-1][0].SetMarginWidth(1, 25)
-            self.notebook.AddPage(self.textcontrols[-1][0], self.textcontrols[-1][1])
-            file = open(os.path.join(dialog.GetDirectory(), dialog.GetFilename()), "r")
-            self.textcontrols[-1][0].SetText(file.read())
-            self.textcontrols[-1][0].EmptyUndoBuffer()
-            file.close()
+            self.notebook.add_file(dialog.GetFilename(), dialog.GetDirectory())
         dialog.Destroy()
 
     def OnSave(self, event):
-        selection = self.notebook.GetSelection()
-        dialog = wx.FileDialog(self, "Choose what you want to save the file as", self.textcontrols[selection][2], self.textcontrols[selection][1], "*.*", wx.SAVE)
+        self.notebook.save()
+
+    def OnSaveAs(self, event):
+        selection = self.notebook.get_selection()
+        dialog = wx.FileDialog(self, "Choose what you want to save the file as", selection.directory, selection.name, "*.*", wx.SAVE)
         if dialog.ShowModal() == wx.ID_OK:
-            self.textcontrols[selection][1] = dialog.GetFilename()
-            self.textcontrols[selection][2] = dialog.GetDirectory()
-            self.notebook.SetPageText(selection, dialog.GetFilename())
-            file = open(os.path.join(dialog.GetDirectory(), dialog.GetFilename()), "w")
-            file.write(self.textcontrols[selection][0].GetText())
-            file.close()
+            self.notebook.save_as(dialog.GetFilename(), dialog.GetDirectory())
         dialog.Destroy()
 
     def OnAbout(self, event):
@@ -119,7 +106,7 @@ class DarkPython(wx.Frame):
 Mac, and Linux. It was made to make it easier and more fun to teach
 python in the school environment. As a backbone, wxWidgets and Pygame
 are used!"""
-        licence = """DarkPython is free and open source. You can redistribute
+        licence = """DarkPython is free and open source. You can redist ribute
 it and / or modify it under the terms of the GNU General Public License
 as published by the Free Software Foundation; either version 2 of the
 license, or (at your option) any later version.
@@ -144,17 +131,10 @@ Public License for more details."""
 
     #OnRun and OnDebug are being left for once I start integrating with the python interpreter.
     def OnInterpret(self, event):
-        selection = self.notebook.GetSelection()
-        if self.textcontrols[selection][1] == "untitled":
-            self.OnSave(None)
-        os.system("python " +  '"' + os.path.join(self.textcontrols[selection][2], self.textcontrols[selection][1]) + '"')
-
+        self.notebook.interpret()
 
     def OnDebug(self, event):
-        selection = self.notebook.GetSelection()
-        if self.textcontrols[selection][1] == "untitled":
-            self.OnSave(None)
-        os.system("python -m pdb " +  '"' + os.path.join(self.textcontrols[selection][2], self.textcontrols[selection][1]) + '"')
+        self.notebook.debug()
 
     def OnPython(self, event):
         dialog = wx.TextEntryDialog(self, "Where is your python path?", caption="Python Path")
@@ -172,8 +152,7 @@ class DebugDialog(wx.Frame):
     def __init__(self, *args, **kwargs):
         wx.Frame.__init__(self, *args, **kwargs)
         self.InitUI()
-        
 
-app = wx.App(False)
-window = DarkPython(parent=None, title="DarkPython", size=(640, 480))
+app = wx.App(redirect=True, filename="logfile.txt")
+window = DarkPython(parent=None, title="DarkPython", size=(800, 640))
 app.MainLoop()
