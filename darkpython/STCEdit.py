@@ -5,12 +5,12 @@ import keyword
 if wx.Platform == '__WXMSW__':
     # for windows OS
     faces = {
-        'times': 'Courier New',
-        'mono' : 'Courier New',
+        'times': 'Consolas',
+        'mono' : 'Consolas',
         # try temporary switch to mono
-        'helv' : 'Courier New',
+        'helv' : 'Consolas',
         #'helv' : 'Arial',
-        'other': 'Courier New',
+        'other': 'Consolas',
         'size' : 10,
         'size2': 8,
         }
