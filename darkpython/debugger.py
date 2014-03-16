@@ -132,6 +132,7 @@ class DebuggerWindow(wx.Frame):
 		self.InitUI()
 		self.debugger = Debugger(self.output, self.variables, code, name="Debugger thread!")
 		self.code.AppendText(code)
+		self.code.SetInsertionPoint(0)
 		self.Show()
 		self.debugger.start()
 	def InitUI(self):
@@ -182,7 +183,7 @@ class DebuggerWindow(wx.Frame):
 		if not (self.debugger.next_line > len(text)):
 			self.code.SetValue("")
 			for line in range(len(text)):
-				if text[line] == "":
+				if text[line] == "" or text[line] == "\n":
 					continue
 				elif (line + 1) == self.debugger.next_line:
 					self.code.SetDefaultStyle(wx.TextAttr(wx.NullColour, wx.GREEN))
@@ -193,6 +194,7 @@ class DebuggerWindow(wx.Frame):
 				else:
 					self.code.SetDefaultStyle(wx.TextAttr())
 					self.code.AppendText(text[line] + "\n")
+			self.code.SetInsertionPoint(0)
 	def OnClose(self, event):
 		global terminate
 		terminate = True
