@@ -97,21 +97,14 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+.center {
+    margin-left:auto;
+    margin-right:auto;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+body {
+    background:white;
+}
 
 /* ==========================================================================
    Helper classes
