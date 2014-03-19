@@ -29,8 +29,8 @@ class MySTC(stc.StyledTextCtrl):
     """
    set up for folding and Python code highlighting
    """
-    def __init__(self, parent):
-        stc.StyledTextCtrl.__init__(self, parent, wx.ID_ANY, style=wx.TE_MULTILINE)
+    def __init__(self, parent, style=wx.TE_MULTILINE):
+        stc.StyledTextCtrl.__init__(self, parent, wx.ID_ANY, style=style)
  
         # use Python code highlighting
         self.SetLexer(stc.STC_LEX_PYTHON)

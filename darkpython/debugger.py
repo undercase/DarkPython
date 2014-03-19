@@ -1,9 +1,11 @@
 import bdb
+from bdb import BdbQuit
 import wx
 import wx.grid
 import threading
 import thread
 import sys
+from STCEdit import *
 
 steps_lock = threading.Lock()
 terminate = False
@@ -132,7 +134,6 @@ class DebuggerWindow(wx.Frame):
 		self.InitUI()
 		self.debugger = Debugger(self.output, self.variables, code, name="Debugger thread!")
 		self.code.AppendText(code)
-		self.code.SetInsertionPoint(0)
 		self.Show()
 		self.debugger.start()
 	def InitUI(self):
@@ -141,7 +142,9 @@ class DebuggerWindow(wx.Frame):
 		vert_sizer = wx.BoxSizer(wx.VERTICAL)
 
 		top_horz_sizer = wx.BoxSizer(wx.HORIZONTAL)
-		self.code = wx.TextCtrl(panel, id=wx.ID_ANY, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH)
+		self.code = MySTC(panel, style=wx.TE_MULTILINE | wx.TE_READONLY)
+		self.code.SetMarginType(1, stc.STC_MARGIN_NUMBER)
+		self.code.SetMarginWidth(1, 25)
 		top_horz_sizer.Add(self.code, proportion=2, flag=wx.EXPAND)
 		self.variables = wx.grid.Grid(panel, id=wx.ID_ANY)
 		self.variables.SetRowLabelSize(0)
@@ -178,23 +181,34 @@ class DebuggerWindow(wx.Frame):
 		steps_lock.acquire(True)
 		self.debugger.steps += 1
 		steps_lock.release()
-		text = self.code.GetValue()
+		text = self.code.GetText()
 		text = text.split("\n")
 		if not (self.debugger.next_line > len(text)):
-			self.code.SetValue("")
 			for line in range(len(text)):
 				if text[line] == "" or text[line] == "\n":
 					continue
 				elif (line + 1) == self.debugger.next_line:
-					self.code.SetDefaultStyle(wx.TextAttr(wx.NullColour, wx.GREEN))
-					self.code.AppendText(text[line] + "\n")
-				elif (line + 1) == self.debugger.current_line:
-					self.code.SetDefaultStyle(wx.TextAttr(wx.NullColour, wx.RED))
-					self.code.AppendText(text[line] + "\n")
-				else:
-					self.code.SetDefaultStyle(wx.TextAttr())
-					self.code.AppendText(text[line] + "\n")
-			self.code.SetInsertionPoint(0)
+					self.style_line(line, "#00FF00")
+				#else:
+					#self.style_line(line, "#272822")
+	def style_line(self, line_number, color):
+		self.code.GotoLine(line_number)
+		position = self.code.GetCurrentPos()
+		text = self.code.GetText()
+		text = text.split("\n")
+		posend = 0
+		for line in range(line_number):
+			posend += len(text[line]) + 2
+		posend += len(text[line_number])
+		posend -= 1
+		print position, posend
+		# Style number is arbitrary and can be changed.
+		style_number = 4
+		#self.code.StyleSetSpec(style_number, "back:" + str(color))
+		self.code.StyleSetBackground(style_number, color)
+		self.code.StartStyling(position, 0xffff)
+		self.code.SetStyling(posend-position, style_number)
+		self.code.SetStyling(posend, 0)
 	def OnClose(self, event):
 		global terminate
 		terminate = True
